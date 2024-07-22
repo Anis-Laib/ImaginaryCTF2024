@@ -24,17 +24,11 @@ while flag_int:
 ```
 
 Mathematically, this can be expressed as repeatedly finding the remainder and quotient when dividing by 64:
-$$
-\text{flag\_int} = a_0 + a_1 \cdot q + a_2 \cdot q^2 + \ldots + a_n \cdot q^n
-$$
+$$\text{flag\_int} = a_0 + a_1 \cdot q + a_2 \cdot q^2 + \ldots + a_n \cdot q^n$$
 
 where ($a_i$) are the digits of `flag_int` in base 64. The `while` loop is essentially performing:
-$$
-   a_i = \text{flag\_int} \% q
-$$
-$$
-   \text{flag\_int} = \left\lfloor \frac{\text{flag\_int}}{q} \right\rfloor
-$$
+$$a_i = \text{flag\_int} \% q$$
+$$\text{flag\_int} = \left\lfloor \frac{\text{flag\_int}}{q} \right\rfloor$$
 This loop continues until `flag_int` becomes zero, collecting all the remainders in `secret_key`.
 
 As I said we were also given an out.txt file containing a secret key
@@ -51,9 +45,7 @@ for i in reversed(secret_key):
    flag_int = flag_int * q + i
 ```
 Mathematically, this is performing the inverse operation of the decomposition:
-$$
-\text{flag\_int} = \sum_{i=0}^{n} a_i \cdot q^i
-$$
+$$\text{flag\_int} = \sum_{i=0}^{n} a_i \cdot q^i$$
 Starting from the least significant digit and building up to the most significant digit.
 And then I convert the long integer into bytes and go the flag
 ```python
